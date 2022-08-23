@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import "~slick-carousel/slick/slick.css"; 
+@import "~slick-carousel/slick/slick-theme.css";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap');
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 8px;
+    background-color : #DDDDDD;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: #000;
+  }
+
+   .layout-client {
+    font-family: 'Roboto Condensed', sans-serif;
+    overflow-x: hidden;
+  } 
+
+  .layout-practive {
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+  } 
+}
+
+@layer utilities {
+  /* Menu */
+  .menu:hover .menu-sub{
+    animation: faceIn 0.6s ease-in-out;
+    display: block;
+  }
+
+   .menu-sub{
+     display: none;
+     animation: faceOut 0.6s ease-in-out;
+     box-shadow: 0px 2px 3px 0px #ccc;
+     border : 1px solid #ccc;
+   }
+   
+   /* Scroll Top */
+  .header-scroll{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: #fff;
+    margin: 0 !important;
+    animation: slideDown 0.6s ease-in-out;
+    box-shadow: 0 0px 6px gray;
+  }
+
+  .back-scroll-top{
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    animation: faceIn 0.6s ease-in-out;
+  }
+
+
+  .filter-transition{
+    transition: max-height 0.2s ease-out;
+  }
+  /* Animation  */
+  @keyframes faceIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes faceOut {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 0;
+    }
+  }
+
+  @keyframes slideDown {
+    from {
+      transform: translateY(-100%);
+    }
+  
+    to {
+      transform: translateY(0)
+    }
+  }
+
+}
