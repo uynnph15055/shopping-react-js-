@@ -12,6 +12,8 @@
     width: 8px;
     background-color : #DDDDDD;
   }
+
+ 
   
   ::-webkit-scrollbar-thumb {
     background-color: #000;
@@ -26,6 +28,15 @@
     font-family: 'Poppins', sans-serif;
     overflow-x: hidden;
   } 
+
+  .slick-track {
+    margin: 0 -7px !important;
+  }
+  
+  .slick-slide {
+    padding: 0 7px !important;
+  }
+  
 }
 
 @layer utilities {
@@ -41,6 +52,7 @@
      box-shadow: 0px 2px 3px 0px #ccc;
      border : 1px solid #ccc;
    }
+   
    
    /* Scroll Top */
   .header-scroll{
@@ -95,5 +107,8 @@
       transform: translateY(0)
     }
   }
+
+
+  /* SLICK SLIDER */
 
 }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ProductMoreView from "../../component/client/products-slider.jsx";
 
 const arrImage = [
   {
@@ -34,11 +35,12 @@ const sizes = [
 ];
 
 const ProductDetail = () => {
-  const [color, setColor] = useState();
+  const [count, setCount] = useState(1);
+  const [quantity , setQuantity] = useState();
 
   useEffect(() => {
     const elColor = document.getElementsByClassName("color");
-    const elSize =  document.getElementsByClassName('size');
+    const elSize = document.getElementsByClassName("size");
     for (let i = 0; i < elColor.length; i++) {
       elColor[i].addEventListener("click", () => {
         elColor[i].style.border = "1px solid #000";
@@ -52,28 +54,28 @@ const ProductDetail = () => {
     }
 
     for (let i = 0; i < elSize.length; i++) {
-        elSize[i].addEventListener("click", () => {
-          const size =  elSize[i].children;
-          size[0].style.backgroundColor = "#000";
-          size[0].style.color = "#ffff";
-          const arrNew = Object.values(elSize).filter(
-            (item, index) => index !== i
-          );
-          for (let j = 0; j < arrNew.length; j++) {
-            const sizeChildren =  arrNew[j].children;
-            for (let k = 0; k < sizeChildren.length; k++) {
-                sizeChildren[k].style.backgroundColor = "#ffff";
-                sizeChildren[k].style.color = "#000";
-            }
+      elSize[i].addEventListener("click", () => {
+        const size = elSize[i].children;
+        size[0].style.backgroundColor = "#000";
+        size[0].style.color = "#ffff";
+        const arrNew = Object.values(elSize).filter(
+          (item, index) => index !== i
+        );
+        for (let j = 0; j < arrNew.length; j++) {
+          const sizeChildren = arrNew[j].children;
+          for (let k = 0; k < sizeChildren.length; k++) {
+            sizeChildren[k].style.backgroundColor = "#ffff";
+            sizeChildren[k].style.color = "#000";
           }
-        });
-      }
+        }
+      });
+    }
   }, []);
 
   return (
     <div className="pb-10">
       <div className="grid grid-cols-5 gap-5">
-        <div className="col-span-3 bg-gray-100 h-[550px]">
+        <div className="col-span-3 bg-gray-100 h-[570px]">
           <div className="overflow-y-auto h-full mx-4">
             <img
               src="https://routine.vn/media/catalog/product/cache/e78fcb931fd36e972f6051c94f188557/1/0/10s21dja004_-_tiger_s_eye_2_1.jpg"
@@ -98,7 +100,7 @@ const ProductDetail = () => {
             <h2 className="col-span-3 font-bold text-gray-800 text-2xl font-base uppercase ">
               ÁO JACKET TRƠN. LOOSE - 10S21DJA004
             </h2>
-            <p className="col-span-1 text-center text-2xl">
+            <p className="col-span-1 text-center text-2xl mt-2">
               <ion-icon name="share-social-outline"></ion-icon>
             </p>
           </div>
@@ -116,48 +118,79 @@ const ProductDetail = () => {
             <span className="text-2xl line-through">639.000 ₫</span>
           </div>
           <h3 className="my-3 text-md text-gray-900 font-[600]">
-            MÃ HÀNG HÓA :<span className="font-[400]">10S21DJA004</span>
+            MÃ HÀNG HÓA :<span className="font-[400]"> 10S21DJA004</span>
           </h3>
-          <form action="">
-            <h3 className="my-3 text-md text-gray-900 font-[600]">MÀU :</h3>
-            <div className="flex">
-              {arrImage.map((item) => (
-                <div
-                  key={item.id}
-                  className="color  border h-[40px]  mr-2 border-gray-300"
-                >
-                  <label htmlFor={item.id}>
-                    <img
-                      className="h-full cursor-pointer" 
-                      src={item.image}
-                      alt=""
-                    />
-                  </label>
-                  <input
-                    className="hidden"
-                    type="radio"
-                    name="color"
-                    id={item.id}
-                  />
-                </div>
-              ))}
-            </div>
-            <h3 className="my-3  text-md text-gray-900 font-[600]">SIZE :</h3>
-            <div className="flex my-3">
-              {sizes.map((item) => (
-                <div key={item.id} className="mr-3">
-                  <label className="cursor-pointer size" htmlFor={item.option}>
-                    <div className="w-9 h-9 leading-9 text-center border border-gray-600">
-                      {item.option}
-                    </div>
-                  </label>
 
-                  <input className="hidden" type="radio" name="size" id={item.option} />
-                </div>
-              ))}
+          <h3 className="my-3 text-md text-gray-900 font-[600]">MÀU :</h3>
+          <div className="flex">
+            {arrImage.map((item) => (
+              <div
+                key={item.id}
+                className="color  border h-[40px]  mr-2 border-gray-300"
+              >
+                <label htmlFor={item.id}>
+                  <img
+                    className="h-full cursor-pointer"
+                    src={item.image}
+                    alt=""
+                  />
+                </label>
+                <input
+                  className="hidden"
+                  type="radio"
+                  name="color"
+                  id={item.id}
+                />
+              </div>
+            ))}
+          </div>
+          <h3 className="my-3  text-md text-gray-900 font-[600]">SIZE :</h3>
+          <div className="flex my-3">
+            {sizes.map((item) => (
+              <div key={item.id} className="mr-3">
+                <label className="cursor-pointer size" htmlFor={item.option}>
+                  <div className="w-9 h-9 leading-9 text-center border border-gray-300">
+                    {item.option}
+                  </div>
+                </label>
+                <input
+                  className="hidden"
+                  type="radio"
+                  name="size"
+                  id={item.option}
+                />
+              </div>
+            ))}
+          </div>
+          <button className="my-4 text-blue-700 font-bold underline underline-offset-1">
+            Hướng Dẫn Chọn Size
+          </button>
+          <div className="flex">
+            <div className="bg-gray-200 h-10 flex justify-between w-[150px] mr-3">
+              <button
+                onClick={() => setCount((pre) => (pre > 1 ? pre - 1 : 1))}
+                className="w-10 h-10 lining-10 pt-1 "
+              >
+                <ion-icon name="remove-outline"></ion-icon>
+              </button>
+              <input
+                min="1"
+                value={count}
+                 onChange={(e) =>  setQuantity(e.target.value)}
+                className="bg-gray-200 font-bold text-md text-center h-10 focus:outline-none w-[70px]"
+                type="text"
+              />
+              <button
+                onClick={() => setCount((pre) => pre + 1)}
+                className="w-10 lining-10  pt-1 h-10"
+              >
+                <ion-icon name="add-outline"></ion-icon>
+              </button>
             </div>
-          </form>
-          <div className="mt-10">
+            <button className="h-10 border border-black px-10">Thêm vào giỏ hàng</button>
+          </div>
+
+          <div className="mt-3">
             <img
               src="https://image.useinsider.com/routine/defaultImageLibrary/705x100-12-1661097081.jpeg"
               alt=""
@@ -165,6 +198,7 @@ const ProductDetail = () => {
           </div>
         </div>
       </div>
+      <ProductMoreView />
     </div>
   );
 };
